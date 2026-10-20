@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fate.exe — Terrible Advice, Beautifully Delivered</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #e6e8f3;
+      background: radial-gradient(ellipse at 50% -15%, #30265b 0, #0c0e19 45%, #070910 90%);
+    }
+    .wrap {
+      max-width: 810px;
+      margin: auto;
+      padding: 28px 20px 70px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: #949ab5;
+      font-size: 12px;
+    }
+    .brand {
+      color: #c7a8ff;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .online { color: #7ce3ad; }
+    main { padding-top: 80px; text-align: center; }
+    .pill {
+      display: inline-block;
+      border: 1px solid #504276;
+      background: #231c38;
+      color: #c7acff;
+      border-radius: 40px;
+      padding: 9px 15px;
+      font-size: 11px;
+      letter-spacing: .1em;
+    }
+    h1 {
+      font-size: clamp(48px, 10vw, 91px);
+      letter-spacing: -.09em;
+      margin: 22px 0 12px;
+      color: #fff;
+    }
+    h1 span { color: #bd9bff; }
+    .sub {
+      max-width: 570px;
+      margin: 0 auto 36px;
+      color: #a7acc3;
+      font-family: system-ui, sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .panel {
+      background: rgba(20,22,36,.88);
+      border: 1px solid #34374e;
+      border-radius: 20px;
+      box-shadow: 0 26px 80px #0007;
+      text-align: left;
+      padding: 26px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      color: #b6b9cd;
+      margin-bottom: 12px;
+      letter-spacing: .07em;
+    }
+    textarea {
+      width: 100%;
+      min-height: 115px;
+      border: 1px solid #42435f;
+      border-radius: 12px;
+      padding: 16px;
+      color: #fff;
+      background: #111320;
+      font: 16px/1.5 system-ui, sans-serif;
+      resize: vertical;
+      outline: none;
+    }
+    textarea:focus {
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 3px #8b5cf622;
+    }
+    .line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-top: 15px;
+      color: #8086a4;
+      font-size: 11px;
+    }
+    button {
+      cursor: pointer;
+      font: 700 14px Consolas, monospace;
+      border-radius: 11px;
+      border: 0;
+      padding: 15px 21px;
+      color: #100f19;
+      background: #b99aff;
+      transition: transform .2s, filter .2s;
+    }
+    button:hover {
+      filter: brightness(1.13);
+      transform: translateY(-2px);
+    }
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 22px;
+      border: 1px solid #655092;
+      border-radius: 14px;
+      background: linear-gradient(140deg,#231a39,#181b2d);
+      animation: pop .35s ease-out;
+    }
+    .result small {
+      color: #b9a1f6;
+      letter-spacing: .14em;
+    }
+    .result p {
+      font: 600 clamp(19px,3.5vw,27px)/1.45 system-ui,sans-serif;
+      margin: 15px 0 0;
+    }
+    @keyframes pop {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .history {
+      text-align: left;
+      margin-top: 34px;
+    }
+    .history-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .history h2 {
+      font-size: 15px;
+      color: #d9d9e8;
+    }
+    .history ul {
+      list-style: none;
+      padding: 0;
+    }
+    .history li {
+      padding: 16px 4px;
+      border-bottom: 1px solid #272a3d;
+      font-size: 13px;
+    }
+    .history strong {
+      display: block;
+      color: #e5e3ef;
+      margin-bottom: 7px;
+      overflow-wrap: anywhere;
+    }
+    .history span {
+      color: #a5a8c2;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+    .empty { color: #8188a7; font-size: 13px; }
+    .clear {
+      background: none;
+      color: #b99aff;
+      padding: 7px 0;
+      font-size: 12px;
+    }
+    footer {
+      text-align: center;
+      color: #777f9e;
+      font-size: 11px;
+      margin-top: 60px;
+      line-height: 1.6;
+    }
+    @media(max-width:520px) {
+      main { padding-top: 55px; }
+      .panel { padding: 18px; }
+      .line { flex-direction: column; align-items: stretch; }
+      .line button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">&gt; fate.exe_</div>
+    <div class="online">● SYSTEM QUESTIONABLY ONLINE</div>
+  </nav>
+
+  <main>
+    <div class="pill">DECISION ENGINE v1.0 // TRUST AT YOUR OWN RISK</div>
+    <h1>Fate<span>.exe</span></h1>
+    <p class="sub">
+      Too indecisive to make your own mistakes?
+      Let an algorithm with zero qualifications make them for you.
+    </p>
+
+    <section class="panel">
+      <label for="question">&gt; ENTER YOUR EXISTENTIAL CRISIS</label>
+      <textarea id="question" maxlength="300"
+        placeholder="Should I text my ex? Should I buy another gadget?"></textarea>
+
+      <div class="line">
+        <span>WARNING: MAY CONTAIN UNWARRANTED CONFIDENCE</span>
+        <button id="decide">CONSULT THE VOID →</button>
+      </div>
+
+      <div id="result" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="history">
+      <div class="history-head">
+        <h2>&gt; PREVIOUS BAD DECISIONS</h2>
+        <button class="clear" id="clear">CLEAR HISTORY</button>
+      </div>
+      <ul id="history"></ul>
+      <p id="empty" class="empty">No terrible decisions on record. Yet.</p>
+    </section>
+  </main>
+
+  <footer>
+    BUILT WITH QUESTIONABLE JUDGMENT ♥
+    · ALL VERDICTS ARE JOKES, NOT REAL ADVICE
+  </footer>
+</div>
+
+<script>
+  const answers = [
+    "Absolutely. What could possibly go wrong? (That's rhetorical.)",
+    "No. And the fact you asked is mildly concerning.",
+    "Ask again after a snack. You're clearly not thinking straight.",
+    "The universe said yes. The legal department said we don't have a legal department.",
+    "I'd flip a coin, but even the coin wants no part of this.",
+    "Go for it. Character development requires terrible decisions.",
+    "Maybe tomorrow. Procrastination is a lifestyle, apparently.",
+    "Your future self just sighed dramatically.",
+    "Yes, but only if you're comfortable explaining this later.",
+    "That's a bold choice for someone who asked a website for advice.",
+    "Hard no. I have standards, and they're extraordinarily low.",
+    "50% yes, 50% no, 100% not my responsibility.",
+    "Proceed with caution and an unusually convincing excuse.",
+    "My processors are laughing. Interpret that however you like.",
+    "Sure. Just don't put me in the group chat when it goes wrong."
+  ];
+
+  const input = document.getElementById('question');
+  const button = document.getElementById('decide');
+  const result = document.getElementById('result');
+  const historyList = document.getElementById('history');
+  const empty = document.getElementById('empty');
+  const storageKey = 'fate-exe-history-v1';
+
+  let history = [];
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    if (Array.isArray(saved)) {
+      history = saved.slice(0,8).filter(
+        x => x && typeof x.question === 'string' &&
+        typeof x.answer === 'string'
+      );
+    }
+  } catch(e) {}
+
+  function renderHistory() {
+    historyList.replaceChildren();
+    empty.hidden = history.length > 0;
+
+    history.forEach(item => {
+      const li = document.createElement('li');
+      const q = document.createElement('strong');
+      const a = document.createElement('span');
+
+      q.textContent = '> ' + item.question;
+      a.textContent = item.answer;
+
+      li.append(q, a);
+      historyList.append(li);
+    });
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(history));
+    } catch(e) {}
+  }
+
+  button.addEventListener('click', () => {
+    const question = input.value.trim();
+
+    if (!question) {
+      input.focus();
+      input.setCustomValidity('Please enter a question first.');
+      input.reportValidity();
+      return;
+    }
+
+    input.setCustomValidity('');
+    button.disabled = true;
+    button.textContent = 'CONSULTING THE VOID…';
+
+    result.hidden = false;
+    result.className = 'result';
+    result.replaceChildren();
+
+    const status = document.createElement('small');
+    status.textContent = 'PROCESSING VERY SERIOUSLY…';
+    result.append(status);
+
+    setTimeout(() => {
+      const answer = answers[Math.floor(Math.random() * answers.length)];
+
+      result.replaceChildren();
+
+      const tag = document.createElement('small');
+      tag.textContent = '✦ THE VOID HAS SPOKEN';
+
+      const verdict = document.createElement('p');
+      verdict.textContent = answer;
+
+      result.append(tag, verdict);
+
+      history.unshift({question, answer});
+      history = history.slice(0,8);
+
+      save();
+      renderHistory();
+
+      button.disabled = false;
+      button.textContent = 'CONSULT THE VOID →';
+    }, 650);
+  });
+
+  input.addEventListener('input', () => input.setCustomValidity(''));
+
+  document.getElementById('clear').addEventListener('click', () => {
+    history = [];
+    save();
+    renderHistory();
+  });
+
+  renderHistory();
+</script>
+</body>
+</html>
